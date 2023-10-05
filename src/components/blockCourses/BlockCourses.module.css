@@ -1,20 +1,14 @@
-.pageCourses {
-    margin-top: 20px;
-    width: 100%;
-  }
-  .mainContent {
-    margin-left: 150px;
-    margin-right: 150px;
-    display: flex;
-    border-radius: 20px;
-    padding: 10px;
-    background-color: aliceblue;
-    opacity: 0.9;
-  }
-  .imgCourses {
-    margin: 20px;
-    width: 200px;
-    max-height: 200px;
-    background: url("../../assets/logo.jpg");
-  }
-  
+.mainContent {
+  margin: 5px;
+  width: 240px;
+  border-radius: 20px;
+  background-color: aliceblue;
+  opacity: 0.9;
+  display: flex;
+}
+.imgCourses {
+  margin: 40px 20px 20px 20px;
+  width: 200px;
+  max-height: 200px;
+  background: url("../../assets/logo.jpg");
+}
