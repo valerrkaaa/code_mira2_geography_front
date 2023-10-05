@@ -1,0 +1,9 @@
+.draggable {
+    position: absolute
+}
+
+.draggableIcon {
+    object-fit: contain;
+    height: 30px;
+    width: 30px;
+}

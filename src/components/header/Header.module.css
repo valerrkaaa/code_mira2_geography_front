@@ -1,0 +1,23 @@
+body {
+  background-color: #d7c8b7;
+}
+.head {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  background-color: #656059;
+}
+.logo {
+  margin-left: 20px;
+  margin-top: -4px;
+  height: 50px;
+  width: 50px;
+  border-radius: 0px 15px;
+}
+.menu {
+  color: white;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: 5px;
+  font-size: medium;
+} /*стиль для шапки*/

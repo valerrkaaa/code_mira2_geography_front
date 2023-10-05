@@ -1,0 +1,19 @@
+.areaButton {
+  margin-top: 4px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+.btnLogin {
+  margin-right: 10px;
+  color: white;
+  background-color: rgba(0, 125, 215, 0);
+  border: 0;
+}
+.btnRegistration {
+  margin-right: 25px;
+  color: white;
+  background-color: rgba(0, 125, 215, 0);
+  border-radius: 20px;
+  padding: 2px 8px;
+  border: 2px solid white;
+}

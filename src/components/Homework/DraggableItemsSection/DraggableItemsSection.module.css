@@ -1,0 +1,9 @@
+.wrapper {
+  position: absolute;
+  left: 101%;
+  top: -1px;
+  border-radius: 10px;
+  background: #f9c04c;
+  border: solid 2px black;
+  height: 600px;
+}
