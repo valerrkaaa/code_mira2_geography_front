@@ -65,10 +65,8 @@ const Registration = () => {
             let oneError = errors[0][1][0];
 
             setErrors(oneError);
-            console.log(oneError);
           } else if (errorStatus === "error") {
             setErrors(error.response.data.message);
-            console.log(error.response.data.message);
           }
         });
     })();

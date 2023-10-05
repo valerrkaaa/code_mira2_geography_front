@@ -31,7 +31,7 @@ const Login = () => {
             authApi(model)
                 .then((response) => {
                     setCookie("jwt", response.data.body.authorization.token);
-                    setCookie("role_id", response.data.body.role);
+                    setCookie("role", response.data.body.role);
                     window.location = `${process.env.REACT_APP_LOCAL_URL}/home`; // redirect to main page
                 })
                 .catch((error) => {
@@ -42,10 +42,8 @@ const Login = () => {
                         let oneError = errors[0][1][0];
 
                         setErrors(oneError);
-                        console.log(oneError);
                     } else if (errorStatus === "error") {
                         setErrors(error.response.data.message);
-                        console.log(error.response.data.message);
                     }
                 });
         })();

@@ -27,8 +27,6 @@ const CreateCourses = observer(() => {
                 homeworkTeacherModeStore.setMap(reader.result);
             };
             reader.readAsDataURL(file);
-        } else {
-            console.log("Файл не является изображением");
         }
     };
 
