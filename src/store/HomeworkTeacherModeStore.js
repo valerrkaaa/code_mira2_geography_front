@@ -66,12 +66,14 @@ export class HomeworkTeacherModeStore {
     };
 
     hasItemsOnCard = () => {
-        return this.homework.pieces.length != 0;
+        return this.homework.pieces.length !== 0;
     };
 
-    sendToTheServer = (token) => {
+    sendToTheServer = (token, model) => {
         let content = {
             type: "map",
+            name: model.name,
+            description: model.description,
             fileId: uuid(),
             content: JSON.stringify(this.homework),
         };
