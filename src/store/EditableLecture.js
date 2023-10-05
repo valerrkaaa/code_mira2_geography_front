@@ -22,10 +22,10 @@ class editableLecture {
                     this.setContentList(raw_data.content);
                 })
                 .catch((error) => {
-                    console.log(
-                        "TODO in LecturePage.jsx: get",
-                        error.response.data
-                    ); // todo->front сделать отображение при ошибках: unauthorized и file not found
+                    // console.log(
+                    //     "TODO in LecturePage.jsx: get",
+                    //     error.response.data
+                    // ); // todo->front сделать отображение при ошибках: unauthorized и file not found
                 });
         })();
     };
@@ -39,11 +39,11 @@ class editableLecture {
             }),
         };
         (async () => {
-            sendLecturePageApi(jwt, model)
-                .then((response) => console.log("set", response.data))
-                .catch((error) => {
-                    console.log("set", error.response); // todo->front сделать отображение ошибки при ошибке загрузки
-                });
+            // sendLecturePageApi(jwt, model)
+            //     .then((response) => console.log("set", response.data))
+            //     .catch((error) => {
+            //         console.log("set", error.response); // todo->front сделать отображение ошибки при ошибке загрузки
+            //     });
         })();
     };
 

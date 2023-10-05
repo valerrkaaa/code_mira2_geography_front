@@ -26,31 +26,29 @@ const Login = () => {
     e.preventDefault();
     setErrors("");
 
-    setLoading(true);
-    (async () => {
-      authApi(model)
-        .then((response) => {
-          setCookie("jwt", response.data.body.authorization.token);
-          setCookie("role", response.data.body.role);
-          window.location = `${process.env.REACT_APP_LOCAL_URL}/home`; // redirect to main page
-        })
-        .catch((error) => {
-          let errorStatus = error.response.data.status;
-          if (errorStatus === "validator error") {
-            // массив ошибок
-            let errors = Object.entries(error.response.data.errors);
-            let oneError = errors[0][1][0];
+        setLoading(true);
+        (async () => {
+            authApi(model)
+                .then((response) => {
+                    setCookie("jwt", response.data.body.authorization.token);
+                    setCookie("role", response.data.body.role);
+                    window.location = `${process.env.REACT_APP_LOCAL_URL}/home`; // redirect to main page
+                })
+                .catch((error) => {
+                    let errorStatus = error.response.data.status;
+                    if (errorStatus === "validator error") {
+                        // массив ошибок
+                        let errors = Object.entries(error.response.data.errors);
+                        let oneError = errors[0][1][0];
 
-            setErrors(oneError);
-            console.log(oneError);
-          } else if (errorStatus === "error") {
-            setErrors(error.response.data.message);
-            console.log(error.response.data.message);
-          }
-        });
-    })();
-    setLoading(false);
-  };
+                        setErrors(oneError);
+                    } else if (errorStatus === "error") {
+                        setErrors(error.response.data.message);
+                    }
+                });
+        })();
+        setLoading(false);
+    };
 
   return (
     <>

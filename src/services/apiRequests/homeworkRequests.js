@@ -15,3 +15,7 @@ const secure = (token) => {
 export const createLessonApi = async (token, model) => {
     return baseApi.post(`create_lesson`, model, secure(token));
 };
+
+export const getLessonsApi = async (token) => {
+    return baseApi.get(`lessons`, secure(token));
+};
