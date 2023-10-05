@@ -34,7 +34,9 @@ const MyCourses = () => {
           <></>
         )}
       </div>
-      <BlockCourses />
+      <div className={classes.listTask}>
+        <BlockCourses />
+      </div>
     </div>
   );
 };

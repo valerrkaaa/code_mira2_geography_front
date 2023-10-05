@@ -20,3 +20,10 @@
   background-color: rgb(230, 140, 24);
   padding-top: 3px;
 }
+.listTask {
+  margin-top: 10px;
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  flex-wrap: wrap;
+}
