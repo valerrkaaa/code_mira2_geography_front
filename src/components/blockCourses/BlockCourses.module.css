@@ -21,3 +21,7 @@
   max-height: 200px;
   background: url("../../assets/logo.jpg");
 }
+.control {
+  display: flex;
+  flex-wrap: wrap;
+}
