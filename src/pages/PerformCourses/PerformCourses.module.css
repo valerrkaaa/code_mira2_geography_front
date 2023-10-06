@@ -21,6 +21,7 @@
   margin-left: 25px;
   border-radius: 10px;
   padding: 5px;
+  text-align: center;
 }
 .textArea {
   width: 95%;
@@ -32,6 +33,7 @@
   background-color: rgb(230, 140, 24);
   color: #000;
   padding: 5px;
+  text-align: center;
 }
 .workPlace {
   width: 100%;
@@ -54,4 +56,10 @@
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
+}
+
+.result{
+  text-align: center;
+  font-size: 40px;
+  margin: 20px;
 }

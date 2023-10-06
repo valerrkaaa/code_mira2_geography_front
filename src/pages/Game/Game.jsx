@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Game.module.css";
 import Unity, { UnityContext } from "react-unity-webgl";
 import Header from "../../components/header/Header";
@@ -18,12 +18,12 @@ const Game = () => {
     const [isCanvas, setIsCanvas] = useState(false);
     const [isDownload, setIsDownload] = useState(false);
 
-    // const handleDownload = () => {
-    //   const link = document.createElement("a");
-    //   link.href = "https://www.example.com/path/to/archive.zip"; // Замените ссылку на ссылку на архив на своем сайте
-    //   link.download = "archive.zip"; // Замените имя файла на свое имя файла
-    //   link.click();
-    // };
+    const handleDownload = () => {
+        const link = document.createElement("a");
+        link.href = "../../../public/DownloadFile/GAME_PC.zip"; // Замените ссылку на ссылку на архив на своем сайте
+        link.download = "GAME_PC.zip"; // Замените имя файла на свое имя файла
+        link.click();
+    };
 
     return (
         <div className={classes.backGround}>
@@ -41,6 +41,11 @@ const Game = () => {
                     <button
                         className={classes.zoom}
                         style={{ flex: 1, marginRight: "10px" }}
+                        onClick={(e) => {
+                            setIsCanvas(false);
+                            setIsZoom(true);
+                            setIsDownload(false);
+                        }}
                     >
                         Zoom
                     </button>
@@ -85,6 +90,19 @@ const Game = () => {
                     <Button className={classes.btnDownLoad}>
                         Скачать приложение
                     </Button>
+                </div>
+            ) : (
+                <></>
+            )}
+            {isZoom ? (
+                <div className={classes.Download}>
+                    <a
+                        href={`https://zoom.us/oauth/authorize?
+
+response_type=code&client_id=${process.env.ZOOM_API_KEY}&redirect_uri=${process.env.ZOOM_REDIRECT_URL}`}
+                    >
+                        Connect Zoom
+                    </a>
                 </div>
             ) : (
                 <></>

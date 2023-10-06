@@ -38,7 +38,7 @@ export const sendHomeworkAnswer = async (token, model) => {
     await sendHomeworkAnswerApi(token, model)
         .then((response) => {
             isSuccess = true;
-            content = response.data.answer
+            content = response.data.mark
         })
         .catch((errors) => {
             console.log(errors.response);
