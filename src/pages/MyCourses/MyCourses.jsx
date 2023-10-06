@@ -25,13 +25,9 @@ const MyCourses = () => {
             .catch();
     }, [cookies]);
 
-    const refresh = () => {
-        console.log("load");
-    }
-
     const deleteLessonById = (id) => {
-        setLessons(lessons.filter(item=>item.id !== id))
-    }
+        setLessons(lessons.filter((item) => item.id !== id));
+    };
 
     return (
         <div className={classes.backGround}>
@@ -42,7 +38,7 @@ const MyCourses = () => {
                     <Button
                         className={classes.btnAddCourses}
                         onClick={(e) => {
-                            navigate("/createcourses/create", {refresh: refresh});
+                            navigate("/createcourses/create");
                         }}
                     >
                         Добавить курс
