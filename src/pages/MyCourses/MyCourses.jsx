@@ -6,7 +6,7 @@ import BlockCourses from "../../components/blockCourses/BlockCourses";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { getTeacherLessons } from "../../services/apiResponseParsers/homeworkParser";
+import { getTeacherLessons } from "../../services/apiResponseParsers/lessonParser";
 
 const MyCourses = () => {
     const navigate = useNavigate();
@@ -25,6 +25,10 @@ const MyCourses = () => {
             .catch();
     }, [cookies]);
 
+    const refresh = () => {
+        console.log("load");
+    }
+
     const deleteLessonById = (id) => {
         setLessons(lessons.filter(item=>item.id !== id))
     }
@@ -38,7 +42,7 @@ const MyCourses = () => {
                     <Button
                         className={classes.btnAddCourses}
                         onClick={(e) => {
-                            navigate("/createcourses/create");
+                            navigate("/createcourses/create", {refresh: refresh});
                         }}
                     >
                         Добавить курс

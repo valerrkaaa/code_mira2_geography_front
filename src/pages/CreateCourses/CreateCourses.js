@@ -8,7 +8,7 @@ import { homeworkTeacherModeStore } from "../../store/HomeworkTeacherModeStore";
 import { useCookies } from "react-cookie";
 import { observer } from "mobx-react-lite";
 import { useNavigate, useParams } from "react-router-dom";
-import { getOwnLesson } from "../../services/apiResponseParsers/homeworkParser";
+import { getOwnLesson } from "../../services/apiResponseParsers/lessonParser";
 
 const CreateCourses = observer(() => {
     const navigate = useNavigate();
@@ -57,6 +57,7 @@ const CreateCourses = observer(() => {
 
     const save = () => {
         homeworkTeacherModeStore.sendToTheServer(cookies.jwt, model, params.id === "create");
+        // this.props.navigation.state.params.refresh()
         navigate("/courses");
     };
 

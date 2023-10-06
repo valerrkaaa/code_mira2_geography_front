@@ -12,34 +12,14 @@ const secure = (token) => {
     };
 };
 
-export const createLessonApi = async (token, model) => {
-    return baseApi.post(`create_lesson`, model, secure(token));
-};
-
-export const updateLessonApi = async (token, model) => {
-    return baseApi.post(`update_lesson`, model, secure(token));
-};
-
-export const deleteLessonApi = async (token, lessonId) => {
-    return baseApi.delete(`lesson?id=${lessonId}`, secure(token));
-};
-
-export const getLessonsApi = async (token) => {
+export const getHomeworkListApi = async (token) => {
     return baseApi.get(`lessons`, secure(token));
 };
 
-export const getTeacherLessonsApi = async (token) => {
-    return baseApi.get(`teacher_lessons`, secure(token));
-};
-
-export const getLessonApi = async (token, lessonId) => {
+export const getHomeworkApi = async (token, lessonId) => {
     return baseApi.get(`lesson?id=${lessonId}`, secure(token));
 };
 
 export const sendHomeworkAnswerApi = async (token, model) => {
     return baseApi.post(`send_homework_answer`, model, secure(token));
-};
-
-export const getOwnLessonApi = async (token, lessonId) => {
-    return baseApi.get(`get_own_lesson?id=${lessonId}`, secure(token));
 };

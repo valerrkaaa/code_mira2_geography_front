@@ -4,14 +4,14 @@ import SearchBar from "../../components/searchBar/SearchBar";
 import classes from "./MainActivity.module.css";
 import { useState } from "react";
 import BlockCourses from "../../components/blockCourses/BlockCourses";
-import { getLessons } from "../../services/apiResponseParsers/homeworkParser";
+import { getHomeworkList } from "../../services/apiResponseParsers/homeworkParser";
 import { useCookies } from "react-cookie";
 
 const MainActivity = () => {
     const [cookies] = useCookies(["jwt"]);
     const [lessons, setLessons] = useState([]);
     useEffect(() => {
-        getLessons(cookies.jwt).then((response) => {
+        getHomeworkList(cookies.jwt).then((response) => {
             if (response[0]) {
                 setLessons(response[1]);
             }

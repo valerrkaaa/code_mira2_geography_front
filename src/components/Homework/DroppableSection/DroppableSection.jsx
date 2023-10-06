@@ -1,10 +1,8 @@
 import {DraggableItemTypes} from "../../../utils/DraggableItemTypes";
 import {useDrop} from "react-dnd";
-import {observer} from "mobx-react-lite";
 import {DraggableItemsSection} from "../DraggableItemsSection/DraggableItemsSection";
 import cn from 'classnames';
 import s from './DroppableSection.module.css';
-import {HomeworkTeacherModeStore} from "../../../store/HomeworkTeacherModeStore";
 import {isTeacherMode} from "../../../utils/InferHomeworkStore";
 
 export const DroppableSection = ({store, checkFinishedStatus=()=>{}}) => {

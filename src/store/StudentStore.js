@@ -1,13 +1,20 @@
 import { makeAutoObservable } from "mobx";
-import {
-    getClassList,
-    getStudentList,
-} from "../services/apiResponseParsers/studentsParser";
+import { getClassList } from "../services/apiResponseParsers/studentsParser";
 
 class StudentStore {
     classList = [];
     constructor() {
         makeAutoObservable(this);
+    }
+
+    loadClassList = (token) => {
+        getClassList(token).then(([isSuccess, content]) => {
+            if (isSuccess) {
+                this.setClassList(content);
+            } else {
+                console.log("error", content);
+            }
+        });
     }
 
     setClassList = (classList) => {

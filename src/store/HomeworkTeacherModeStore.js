@@ -4,7 +4,7 @@ import { makeAutoObservable } from "mobx";
 import {
     createLesson,
     updateLesson,
-} from "../services/apiResponseParsers/homeworkParser";
+} from "../services/apiResponseParsers/lessonParser";
 
 export class HomeworkTeacherModeStore {
     constructor() {
@@ -47,7 +47,7 @@ export class HomeworkTeacherModeStore {
                 },
                 isDeployed: false,
                 id: uuid(),
-            },)
+            });
         });
 
         this.homework.pieces = [...this.homework.pieces, ...defaultPieces];
@@ -119,6 +119,14 @@ export class HomeworkTeacherModeStore {
                 id: model.id,
             }).then((isSuccess, content) => {});
         }
+        this.onDesctruct();
+    };
+
+    onDesctruct = () => {
+        this.homework = {
+            map: "",
+            pieces: [],
+        };
     };
 }
 

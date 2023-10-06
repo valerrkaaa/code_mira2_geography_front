@@ -71,9 +71,19 @@ class HomeworkStore {
             lesson_id: lessonId,
             fileId: uuid(),
         };
-        sendHomeworkAnswer(token, output).then((response) => {
-            console.log(response);
+        console.log(JSON.stringify(output.pieces));
+        sendHomeworkAnswer(token, output).then(([isSuccess, content]) => {
+            if (isSuccess){
+                console.log(content);
+            }
         });
+        this.onDesctruct();
+    };
+    onDesctruct = () => {
+        this.homework = {
+            map: "",
+            pieces: [],
+        };
     };
 }
 

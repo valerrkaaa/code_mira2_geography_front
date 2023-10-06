@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { Button } from "react-bootstrap";
 import ClearIcon from "@mui/icons-material/Clear";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { deleteLesson } from "../../services/apiResponseParsers/homeworkParser";
+import { deleteLesson } from "../../services/apiResponseParsers/lessonParser";
 
 const BlockCourses = (props) => {
     const navigate = useNavigate();

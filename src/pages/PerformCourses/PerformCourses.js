@@ -6,7 +6,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DroppableSection } from "../../components/Homework/DroppableSection/DroppableSection";
 import { homeworkStore } from "../../store/HomeworkStore";
 import { useParams } from "react-router-dom";
-import { getLesson } from "../../services/apiResponseParsers/homeworkParser";
+import { getHomework } from "../../services/apiResponseParsers/homeworkParser";
 import { useCookies } from "react-cookie";
 import { observer } from "mobx-react-lite";
 
@@ -20,7 +20,7 @@ const PerformCourses = observer((props) => {
     const [cookies] = useCookies();
 
     useEffect(() => {
-        getLesson(cookies.jwt, params.id).then((response) => {
+        getHomework(cookies.jwt, params.id).then((response) => {
             if (response[0]) {
                 homeworkStore.setHomework(response[1]);
                 setLesson({
