@@ -37,6 +37,20 @@ export class HomeworkTeacherModeStore {
 
     setPieces = (pieces) => {
         this.homework.pieces = pieces;
+        let defaultPieces = [];
+        Object.entries(DraggableItemTypes).forEach((itemName) => {
+            defaultPieces.push({
+                type: itemName[0],
+                position: {
+                    x: 0,
+                    y: 0,
+                },
+                isDeployed: false,
+                id: uuid(),
+            },)
+        });
+
+        this.homework.pieces = [...this.homework.pieces, ...defaultPieces];
     };
 
     addPiece = ({ position, type }) => {
@@ -99,9 +113,11 @@ export class HomeworkTeacherModeStore {
                 (isSuccess, content) => {}
             );
         else {
-            updateLesson(token, { ...content, fileId: model.fileId, id: model.id}).then(
-                (isSuccess, content) => {}
-            );
+            updateLesson(token, {
+                ...content,
+                fileId: model.fileId,
+                id: model.id,
+            }).then((isSuccess, content) => {});
         }
     };
 }
