@@ -6,8 +6,9 @@
   background-size: cover;
 }
 .searchLine {
-  width: 100%;
-  padding-right: 130px;
+  display: flex;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 .listTask {
   margin-top: 10px;

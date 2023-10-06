@@ -10,9 +10,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   const [cookie] = useCookies(["jwt"]);
-  
+
   const [isAutorized, setAutorized] = useState(true);
   const [openProfile, setOpenProfile] = useState(false);
+  const [isTeacher, setIsTeacher] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +32,9 @@ const Header = () => {
         });
     })();
   }, [cookie.jwt]);
+  useEffect(() => {
+    setIsTeacher(cookie.role === "teacher");
+  }, [cookie]);
 
   return (
     <header className={classes.head}>
@@ -58,7 +62,7 @@ const Header = () => {
               items={[
                 { href: "/userPage", value: "Личный кабинет" },
                 { href: "/courses", value: "Мои курсы" },
-                { href: "/welcome", value: "Welcome" }
+                { href: "/classes", value: "Классы" }
               ]}
             />
           )}

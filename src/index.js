@@ -12,6 +12,7 @@ import MainActivity from "./pages/Home/MainActivity";
 import MyCourses from "./pages/MyCourses/MyCourses";
 import CreateCourses from "./pages/CreateCourses/CreateCourses";
 import PerformCourses from "./pages/PerformCourses/PerformCourses";
+import Liststudents from "./pages/ListStudents/ListStudents";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -29,6 +30,7 @@ root.render(
       <Route path="/courses" element={<MyCourses />} />
       <Route path="/createcourses" element={<CreateCourses />} />
       <Route path="/performcourses/:id" element={<PerformCourses />} />
+      <Route path="/classes" element={<Liststudents />} />
       <Route path="*" element={<Welcome />} />
     </Routes>
   </BrowserRouter>
