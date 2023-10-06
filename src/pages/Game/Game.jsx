@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classes from "./Game.module.css";
 import Unity, { UnityContext } from "react-unity-webgl";
 import Header from "../../components/header/Header";
-import DrawingBoard from "../../components/DrawingBoard/DrawingBoard";
-import { PaintBox } from "../../components/paintBox/PaintBox";
+import { PaintBox } from "../../components/PaintBox/PaintBox";
 import { Button } from "react-bootstrap";
 
 const unityContext = new UnityContext({
-    loaderUrl: "/assets/Build/BuildUnity.loader.js",
-    dataUrl: "/assets/Build/BuildUnity.data.unityweb",
-    frameworkUrl: "/assets/Build/BuildUnity.framework.js.unityweb",
-    codeUrl: "/assets/Build/BuildUnity.wasm.unityweb",
+    loaderUrl: "/assets/Build/GAME4.loader.js",
+    dataUrl: "/assets/Build/webgl.data",
+    frameworkUrl: "/assets/Build/build.framework.js",
+    codeUrl: "/assets/Build/build.wasm",
 });
 
 const Game = () => {
@@ -87,7 +86,10 @@ const Game = () => {
             )}
             {isDownload ? (
                 <div className={classes.Download}>
-                    <Button className={classes.btnDownLoad}>
+                    <Button
+                        className={classes.btnDownLoad}
+                        onClick={handleDownload}
+                    >
                         Скачать приложение
                     </Button>
                 </div>
@@ -97,8 +99,8 @@ const Game = () => {
             {isZoom ? (
                 <div className={classes.Download}>
                     <a
-                        href={`https://zoom.us/oauth/authorize?
-
+                        href={`https://zoom.us/oauth/authorize? 
+ 
 response_type=code&client_id=${process.env.ZOOM_API_KEY}&redirect_uri=${process.env.ZOOM_REDIRECT_URL}`}
                     >
                         Connect Zoom
