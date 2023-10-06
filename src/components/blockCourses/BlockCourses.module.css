@@ -22,6 +22,30 @@
   background: url("../../assets/logo.jpg");
 }
 .control {
+  width: 240px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+}
+.btnSetting {
+  background-color: rgb(230, 140, 24);
+  border: 2px solid rgb(230, 140, 24);
+  color: black;
+  margin-left: 63px;
+  margin-right: 5px;
+}
+.btnDelete {
+  background-color: rgb(230, 140, 24);
+  border: 2px solid rgb(230, 140, 24);
+  color: red;
+  margin-left: 5px;
+  margin-right: 63px;
+}
+.btnSetting:hover {
+  border: 2px solid rgb(230, 140, 24);
+  background-color: rgb(173, 105, 18);
+}
+.btnDelete:hover {
+  border: 2px solid rgb(230, 140, 24);
+  background-color: rgb(173, 105, 18);
 }

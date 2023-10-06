@@ -27,10 +27,10 @@ const BlockCourses = (props) => {
       <img className={classes.imgCourses} src={props.photo} alt={"Not Found"} />
       {isTeacher ? (
         <div className={classes.control}>
-          <Button>
+          <Button className={classes.btnSetting}>
             <SettingsIcon />
           </Button>
-          <Button>
+          <Button className={classes.btnDelete}>
             <ClearIcon />
           </Button>
         </div>
