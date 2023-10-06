@@ -44,7 +44,7 @@ const MyCourses = () => {
                 )}
             </div>
             {lessons.map((item) => {
-                return <BlockCourses key={item.id} name={item.name} photo={item.photo}/>;
+                return <BlockCourses key={item.id} id={item.id} name={item.name} photo={item.photo}/>;
             })}
         </div>
     );

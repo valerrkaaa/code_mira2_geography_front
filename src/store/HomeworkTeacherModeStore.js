@@ -70,13 +70,25 @@ export class HomeworkTeacherModeStore {
     };
 
     sendToTheServer = (token, model) => {
+        let outputPieces = [];
+        this.homework.pieces.forEach((piece) => {
+            if ((piece["position"]["x"] !== 0) && (piece["position"]["y"] !== 0)) {
+                outputPieces.push(piece);
+            }
+        });
+
         let content = {
             type: "map",
             name: model.name,
             description: model.description,
             fileId: uuid(),
-            content: JSON.stringify(this.homework),
+            content: JSON.stringify({
+                map: this.homework.map,
+                pieces: outputPieces,
+            }),
         };
+
+        console.log(content);
         createLesson(token, content).then((isSuccess, content) => {});
     };
 }

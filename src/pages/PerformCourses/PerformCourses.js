@@ -22,7 +22,7 @@ const PerformCourses = observer((props) => {
     useEffect(() => {
         getLesson(cookies.jwt, params.id).then((response) => {
             if (response[0]) {
-                homeworkStore.setHomeworkMap(response[1].map);
+                homeworkStore.setHomework(response[1]);
                 setLesson({
                     name: response[1].name,
                     description: response[1].description,

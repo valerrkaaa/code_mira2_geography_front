@@ -7,7 +7,7 @@ import s from './DroppableSection.module.css';
 import {HomeworkTeacherModeStore} from "../../../store/HomeworkTeacherModeStore";
 import {isTeacherMode} from "../../../utils/InferHomeworkStore";
 
-export const DroppableSection = ({store, checkFinishedStatus}) => {
+export const DroppableSection = ({store, checkFinishedStatus=()=>{}}) => {
     const [{isOver}, drop] = useDrop(
         () => ({
             accept: Object.values(DraggableItemTypes),

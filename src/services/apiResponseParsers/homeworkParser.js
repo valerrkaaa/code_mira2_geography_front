@@ -68,8 +68,7 @@ export const sendHomeworkAnswer = async (token, model) => {
     await sendHomeworkAnswerApi(token, model)
         .then((response) => {
             isSuccess = true;
-            // content = response.data.content;
-            console.log(response.data);
+            console.log(response);
         })
         .catch((errors) => {
             console.log(errors.response);

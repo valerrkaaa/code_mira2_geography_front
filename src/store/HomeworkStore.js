@@ -1,4 +1,3 @@
-import { DraggableItemTypes } from "../utils/DraggableItemTypes";
 import uuid from "react-uuid";
 import { makeAutoObservable } from "mobx";
 import { sendHomeworkAnswer } from "../services/apiResponseParsers/homeworkParser";
@@ -22,77 +21,25 @@ class HomeworkStore {
          * describes pieces, that should be deployed on the map
          * @type {Array}
          */
-        pieces: [
-            {
-                /**
-                 *  type of draggable element
-                 *  @type {DraggableItemTypes.}
-                 */
-                type: DraggableItemTypes.HOUSE,
-
-                /**
-                 * position of the element
-                 * @type {{x: number, y: number}}
-                 */
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-
-                /**
-                 * has user touched element
-                 * @type {boolean}
-                 */
-                isDeployed: false,
-
-                /**
-                 * piece id
-                 * @type {string}
-                 */
-                id: uuid(),
-            },
-
-            {
-                type: DraggableItemTypes.HOUSE,
-
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-
-                isDeployed: false,
-
-                id: uuid(),
-            },
-            {
-                type: DraggableItemTypes.TREE,
-
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-
-                isDeployed: false,
-
-                id: uuid(),
-            },
-            {
-                type: DraggableItemTypes.CAR,
-
-                position: {
-                    x: 0,
-                    y: 0,
-                },
-
-                isDeployed: false,
-
-                id: uuid(),
-            },
-        ],
+        pieces: [],
     };
 
-    setHomeworkMap = (map) => {
-        this.homework.map = map;
+    setHomework = (homework) => {
+        this.homework.map = homework.map;
+        let newPieces = [];
+        homework.pieces.forEach((item) => {
+            newPieces.push({
+                type: item.type,
+                id: item.id,
+                position: {
+                    x: 0,
+                    y: 0,
+                },
+
+                isDeployed: false,
+            });
+        });
+        this.homework.pieces = newPieces;
     };
 
     setPieceCoords = ({ id, position }) => {
