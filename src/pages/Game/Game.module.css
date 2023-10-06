@@ -1,0 +1,9 @@
+.Game {
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.mainBlock {
+  width: 100%;
+  background-color: aqua;
+}

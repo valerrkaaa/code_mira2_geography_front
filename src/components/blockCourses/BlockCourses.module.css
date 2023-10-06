@@ -33,6 +33,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 5px;
 }
 .btnSetting {
   background-color: rgb(230, 140, 24);
