@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import { Button } from "react-bootstrap";
 import ClearIcon from "@mui/icons-material/Clear";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { deleteLesson } from "../../services/apiResponseParsers/homeworkParser";
 
 const BlockCourses = (props) => {
     const navigate = useNavigate();
@@ -13,6 +14,12 @@ const BlockCourses = (props) => {
     useEffect(() => {
         setIsTeacher(cookies.role === "teacher");
     }, [cookies]);
+
+    const deleteItem = () => {
+      deleteLesson(cookies.jwt, props.id)
+      props.deleteLessonById(props.id)
+    }
+
     return (
         <div
             className={classes.mainContent}
@@ -32,7 +39,6 @@ const BlockCourses = (props) => {
                 <div className={classes.control}>
                     <Button
                         onClick={(e) => {
-                          console.log('1');
                             e.stopPropagation();
                             navigate(`/createcourses/${props.id}`);
                         }}
@@ -40,7 +46,13 @@ const BlockCourses = (props) => {
                     >
                         <SettingsIcon />
                     </Button>
-                    <Button className={classes.btnDelete}>
+                    <Button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            deleteItem();
+                        }}
+                        className={classes.btnDelete}
+                    >
                         <ClearIcon />
                     </Button>
                 </div>

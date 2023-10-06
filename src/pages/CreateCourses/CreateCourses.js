@@ -45,6 +45,7 @@ const CreateCourses = observer(() => {
                     name: response[1].name,
                     description: response[1].description,
                     fileId: response[1].fileId,
+                    id: params.id
                 });
             });
         }

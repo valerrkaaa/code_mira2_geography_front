@@ -20,6 +20,10 @@ export const updateLessonApi = async (token, model) => {
     return baseApi.post(`update_lesson`, model, secure(token));
 };
 
+export const deleteLessonApi = async (token, lessonId) => {
+    return baseApi.delete(`lesson?id=${lessonId}`, secure(token));
+};
+
 export const getLessonsApi = async (token) => {
     return baseApi.get(`lessons`, secure(token));
 };

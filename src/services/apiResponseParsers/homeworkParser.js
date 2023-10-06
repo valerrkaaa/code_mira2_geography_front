@@ -1,10 +1,12 @@
 import {
     createLessonApi,
+    deleteLessonApi,
     getLessonApi,
     getLessonsApi,
     getOwnLessonApi,
     getTeacherLessonsApi,
     sendHomeworkAnswerApi,
+    updateLessonApi,
 } from "../apiRequests/homeworkRequests";
 
 export const createLesson = async (token, model) => {
@@ -24,10 +26,24 @@ export const createLesson = async (token, model) => {
 export const updateLesson = async (token, model) => {
     let isSuccess = false;
     let content = "";
-    await createLessonApi(token, model)
+    await updateLessonApi(token, model)
         .then((response) => {
             isSuccess = true;
             console.log("updateLesson", response.data);
+        })
+        .catch((errors) => {
+            console.log(errors.response);
+        });
+    return [isSuccess, content];
+};
+
+export const deleteLesson = async (token, lessonId) => {
+    let isSuccess = false;
+    let content = "";
+    await deleteLessonApi(token, lessonId)
+        .then((response) => {
+            isSuccess = true;
+            console.log("deleteLesson", response.data);
         })
         .catch((errors) => {
             console.log(errors.response);

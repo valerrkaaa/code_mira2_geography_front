@@ -10,10 +10,10 @@ import { getTeacherLessons } from "../../services/apiResponseParsers/homeworkPar
 
 const MyCourses = () => {
     const navigate = useNavigate();
+    const [isTeacher, setIsTeacher] = useState(true);
     const [lessons, setLessons] = useState([]);
     const [cookies] = useCookies();
 
-    const [isTeacher, setIsTeacher] = useState(true);
     useEffect(() => {
         setIsTeacher(cookies.role === "teacher");
         getTeacherLessons(cookies.jwt)
@@ -24,6 +24,10 @@ const MyCourses = () => {
             })
             .catch();
     }, [cookies]);
+
+    const deleteLessonById = (id) => {
+        setLessons(lessons.filter(item=>item.id !== id))
+    }
 
     return (
         <div className={classes.backGround}>
@@ -51,6 +55,7 @@ const MyCourses = () => {
                         id={item.id}
                         name={item.name}
                         photo={item.photo}
+                        deleteLessonById={deleteLessonById}
                     />
                 );
             })}

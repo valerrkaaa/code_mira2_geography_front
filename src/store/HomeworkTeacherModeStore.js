@@ -94,14 +94,12 @@ export class HomeworkTeacherModeStore {
             }),
         };
 
-        console.log('content', content);
-
         if (isNewLesson)
             createLesson(token, { ...content, fileId: uuid() }).then(
                 (isSuccess, content) => {}
             );
         else {
-            updateLesson(token, { ...content, fileId: model.fileId }).then(
+            updateLesson(token, { ...content, fileId: model.fileId, id: model.id}).then(
                 (isSuccess, content) => {}
             );
         }
