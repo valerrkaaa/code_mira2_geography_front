@@ -18,7 +18,9 @@ class StudentStore {
     }
 
     setClassList = (classList) => {
-        this.classList = classList;
+        
+        this.classList = [...classList];
+        this.classList.forEach(item => item.button = true)
     };
 
     getStudents = (classId) => {

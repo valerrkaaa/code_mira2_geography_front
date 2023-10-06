@@ -1,9 +1,56 @@
-.Game {
-  margin-top: 20px;
-  margin-left: 150px;
-  margin-right: 150px;
-}
-.mainBlock {
-  width: 100%;
-  background-color: aqua;
+.backGround { 
+  width: 100%; 
+  height: 100vh; 
+  margin: 0; 
+  display: flex; 
+  background: url("../../assets/backCreateCourses.jpg"); 
+  background-size: cover; 
+  flex-direction: column; 
+} 
+.Game { 
+  margin-top: 20px; 
+  margin-left: 150px; 
+  margin-right: 150px; 
+} 
+.mainBlock { 
+  width: 100%; 
+} 
+.Paint { 
+  margin-top: 75px; 
+  margin-left: 150px; 
+  margin-right: 150px; 
+  display: flex; 
+  align-self: center; 
+} 
+.ChooseBtn { 
+  margin-top: 20px; 
+  margin-left: 150px; 
+  margin-right: 150px; 
+} 
+.zoom { 
+  border-radius: 20px 0 0 20px; 
+  background-color: #f9c04c; 
+} 
+.zoom1 { 
+  background-color: #f9c04c; 
+} 
+.zoom2 { 
+  border-radius: 0 20px 20px 0; 
+  background-color: #f9c04c; 
+} 
+.Download { 
+  margin-top: 25px; 
+  margin-left: 150px; 
+  margin-right: 150px; 
+  display: flex; 
+  align-self: center; 
+} 
+.btnDownLoad { 
+  border-radius: 20px; 
+  background-color: rgb(230, 140, 24); 
+  border: 2px solid rgb(230, 140, 24); 
+} 
+.btnDownLoad:hover { 
+  border: 2px solid rgb(230, 140, 24); 
+  background-color: rgb(173, 105, 18); 
 }

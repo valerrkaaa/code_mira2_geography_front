@@ -9,26 +9,25 @@ import { useCookies } from "react-cookie";
 import { getTeacherLessons } from "../../services/apiResponseParsers/lessonParser";
 
 const MyCourses = () => {
-  const navigate = useNavigate();
-  const [isTeacher, setIsTeacher] = useState(true);
-  const [lessons, setLessons] = useState([]);
-  const [cookies] = useCookies();
+    const navigate = useNavigate();
+    const [isTeacher, setIsTeacher] = useState(true);
+    const [lessons, setLessons] = useState([]);
+    const [cookies] = useCookies();
 
-  useEffect(() => {
-    setIsTeacher(cookies.role === "teacher");
-    getTeacherLessons(cookies.jwt)
-      .then((response) => {
-        if (response[0]) {
-          setLessons(response[1]);
-        }
-      })
-      .catch();
-  }, [cookies]);
-
+    useEffect(() => {
+        setIsTeacher(cookies.role === "teacher");
+        getTeacherLessons(cookies.jwt)
+            .then((response) => {
+                if (response[0]) {
+                    setLessons(response[1]);
+                }
+            })
+            .catch();
+    }, [cookies]);
 
     const deleteLessonById = (id) => {
-        setLessons(lessons.filter(item=>item.id !== id))
-    }
+        setLessons(lessons.filter((item) => item.id !== id));
+    };
 
     return (
         <div className={classes.backGround}>
@@ -48,18 +47,20 @@ const MyCourses = () => {
                     <></>
                 )}
             </div>
-            {lessons.map((item) => {
-                return (
-                    <BlockCourses
-                        needShowButtons={true}
-                        key={item.id}
-                        id={item.id}
-                        name={item.name}
-                        photo={item.photo}
-                        deleteLessonById={deleteLessonById}
-                    />
-                );
-            })}
+            <div className={classes.marginDiv}>
+                {lessons.map((item) => {
+                    return (
+                        <BlockCourses
+                            needShowButtons={true}
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            photo={item.photo}
+                            deleteLessonById={deleteLessonById}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };
