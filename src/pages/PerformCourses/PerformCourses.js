@@ -13,6 +13,7 @@ import { observer } from "mobx-react-lite";
 const PerformCourses = observer((props) => {
     const params = useParams();
     const [isPupilFinished, setPupilFinished] = useState(false);
+    const [isPupilGetMark, setPupilGetMark] = useState(false);
     const [lesson, setLesson] = useState({
         name: "",
         description: "",
@@ -35,31 +36,39 @@ const PerformCourses = observer((props) => {
         setPupilFinished(homeworkStore.isAllIconsDeployed());
     };
 
+    const sendAnswer = () => {
+        homeworkStore.sendHomework(cookies.jwt, params.id);
+    };
+
     return (
         <div className={classes.backGround}>
             <Header />
             <div className={classes.content}>
                 <h1 className={classes.nameCourses}>{lesson.name}</h1>
                 <p className={classes.textArea}>{lesson.description}</p>
-                <div className={classes.workPlace}>
-                    <DndProvider backend={HTML5Backend}>
-                        <DroppableSection
-                            checkFinishedStatus={checkFinishedStatus}
-                            store={homeworkStore}
-                        />
-                    </DndProvider>
-                </div>
-                {isPupilFinished ? (
-                    <button
-                        className={classes.btnSave}
-                        onClick={(e) =>
-                            homeworkStore.sendHomework(cookies.jwt, params.id)
-                        }
-                    >
-                        Отправить
-                    </button>
+                {homeworkStore.mark === 0 ? (
+                    <>
+                        <div className={classes.workPlace}>
+                            <DndProvider backend={HTML5Backend}>
+                                <DroppableSection
+                                    checkFinishedStatus={checkFinishedStatus}
+                                    store={homeworkStore}
+                                />
+                            </DndProvider>
+                        </div>
+                        {isPupilFinished ? (
+                            <button
+                                className={classes.btnSave}
+                                onClick={(e) => sendAnswer()}
+                            >
+                                Отправить
+                            </button>
+                        ) : (
+                            <></>
+                        )}
+                    </>
                 ) : (
-                    <></>
+                    <div className={classes.result}>Ваша оценка: {homeworkStore.mark}</div>
                 )}
             </div>
         </div>
