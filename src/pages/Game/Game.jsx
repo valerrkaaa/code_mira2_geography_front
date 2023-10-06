@@ -13,12 +13,12 @@ const unityContext = new UnityContext({
 
 const Game = () => {
   return (
-    <>
+    <div className={classes.backGround}>
       <Header />
       <div className={classes.Game}>
         <Unity className={classes.mainBlock} unityContext={unityContext} />
       </div>
-    </>
+    </div>
   );
 };
 
