@@ -13,11 +13,11 @@ const secure = (token) => {
 };
 
 export const getHomeworkListApi = async (token) => {
-    return baseApi.get(`lessons`, secure(token));
+    return baseApi.get(`homework_list`, secure(token));
 };
 
 export const getHomeworkApi = async (token, lessonId) => {
-    return baseApi.get(`lesson?id=${lessonId}`, secure(token));
+    return baseApi.get(`homework_item?id=${lessonId}`, secure(token));
 };
 
 export const sendHomeworkAnswerApi = async (token, model) => {

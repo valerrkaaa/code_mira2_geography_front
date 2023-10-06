@@ -33,7 +33,7 @@ root.render(
       <Route path="/performcourses/:id" element={<PerformCourses />} />
       <Route path="/classes" element={<Liststudents />} />
       <Route path="/game" element={<Game />} />
-      <Route path="*" element={<Welcome />} />
+      <Route path="*" element={<MainActivity />} />
     </Routes>
   </BrowserRouter>
   // </React.StrictMode>

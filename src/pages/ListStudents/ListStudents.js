@@ -17,7 +17,6 @@ const ListStudents = observer((props) => {
     }, [cookies.jwt]);
 
     const arrowChange = (e, item) => {
-        console.log(e);
         e.preventDefault();
         item.button = !item.button;
     };

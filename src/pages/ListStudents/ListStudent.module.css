@@ -7,7 +7,6 @@
   flex-direction: column;
 }
 .content {
-
   display: flex;
   margin: 40px 150px 10px 150px;
   padding: 10px;
@@ -16,10 +15,7 @@
   opacity: 0.95;
 }
 .content > div {
-
   margin-bottom: 200px;
-}
-.headerClass {
 }
 .nameTittle {
   display: block;

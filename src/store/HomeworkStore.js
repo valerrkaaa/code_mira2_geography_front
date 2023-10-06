@@ -1,6 +1,7 @@
 import uuid from "react-uuid";
 import { makeAutoObservable } from "mobx";
 import { sendHomeworkAnswer } from "../services/apiResponseParsers/homeworkParser";
+import { async } from "q";
 
 class HomeworkStore {
     constructor() {
@@ -10,6 +11,7 @@ class HomeworkStore {
     /**
      * stores current homework, which student is doing
      */
+    mark = 0;
     homework = {
         /**
          * map url
@@ -64,21 +66,25 @@ class HomeworkStore {
         return is;
     };
 
-    sendHomework = (token, lessonId) => {
+    sendHomework = async(token, lessonId) => {
         let output = {
             map: this.homework.map,
             pieces: this.homework.pieces,
             lesson_id: lessonId,
             fileId: uuid(),
         };
-        console.log(JSON.stringify(output.pieces));
         sendHomeworkAnswer(token, output).then(([isSuccess, content]) => {
-            if (isSuccess){
-                console.log(content);
+            if (isSuccess) {
+                this.setMark(content)
             }
         });
         this.onDesctruct();
     };
+
+    setMark = (mark) => {
+        this.mark = mark;
+    }
+
     onDesctruct = () => {
         this.homework = {
             map: "",
