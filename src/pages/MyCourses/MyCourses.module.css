@@ -33,3 +33,7 @@
   border: 2px solid rgb(230, 140, 24);
   background-color: rgb(173, 105, 18);
 }
+.marginDiv {
+  margin-left: 150px;
+  margin-right: 150px;
+}

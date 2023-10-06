@@ -9,25 +9,22 @@ import { useCookies } from "react-cookie";
 import { getTeacherLessons } from "../../services/apiResponseParsers/lessonParser";
 
 const MyCourses = () => {
-    const navigate = useNavigate();
-    const [isTeacher, setIsTeacher] = useState(true);
-    const [lessons, setLessons] = useState([]);
-    const [cookies] = useCookies();
+  const navigate = useNavigate();
+  const [isTeacher, setIsTeacher] = useState(true);
+  const [lessons, setLessons] = useState([]);
+  const [cookies] = useCookies();
 
-    useEffect(() => {
-        setIsTeacher(cookies.role === "teacher");
-        getTeacherLessons(cookies.jwt)
-            .then((response) => {
-                if (response[0]) {
-                    setLessons(response[1]);
-                }
-            })
-            .catch();
-    }, [cookies]);
+  useEffect(() => {
+    setIsTeacher(cookies.role === "teacher");
+    getTeacherLessons(cookies.jwt)
+      .then((response) => {
+        if (response[0]) {
+          setLessons(response[1]);
+        }
+      })
+      .catch();
+  }, [cookies]);
 
-    const refresh = () => {
-        console.log("load");
-    }
 
     const deleteLessonById = (id) => {
         setLessons(lessons.filter(item=>item.id !== id))
@@ -42,7 +39,7 @@ const MyCourses = () => {
                     <Button
                         className={classes.btnAddCourses}
                         onClick={(e) => {
-                            navigate("/createcourses/create", {refresh: refresh});
+                            navigate("/createcourses/create");
                         }}
                     >
                         Добавить курс

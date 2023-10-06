@@ -10,8 +10,39 @@
   flex-direction: column;
 }
 .content {
-  margin: 20px 150px 10px 150px;
+  margin: 40px 150px 10px 150px;
+  padding: 10px;
   border-radius: 40px;
   background-color: #f2f2f2;
   opacity: 0.95;
+}
+.headerClass {
+  height: 100%;
+  display: flex;
+}
+.nameTittle {
+  margin-left: 10px;
+}
+.btnExpand {
+  margin-top: 3px;
+  margin-left: 10px;
+  font-size: small;
+  padding: 3px;
+  height: 30px;
+  background-color: rgb(230, 140, 24);
+  border: 2px solid rgb(230, 140, 24);
+}
+.btnExpand:hover {
+  border: 2px solid rgb(230, 140, 24);
+  background-color: rgb(173, 105, 18);
+}
+.rowstudent {
+  padding-left: 15px;
+  font-size: 18px;
+}
+.perimeterClass {
+  border-radius: 20px;
+  padding: 0%;
+  border: 1px solid rgb(230, 140, 24);
+  margin: 2px;
 }
