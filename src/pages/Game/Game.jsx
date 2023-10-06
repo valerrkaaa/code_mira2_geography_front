@@ -88,7 +88,19 @@ const Game = () => {
       ) : (
         <></>
       )}
-      {isZoom ? <div className={classes.Download}></div> : <></>}
+      {isZoom ? (
+        <div className={classes.Download}>
+          <a
+            href={`https://zoom.us/oauth/authorize?
+
+response_type=code&client_id=${process.env.ZOOM_API_KEY}&redirect_uri=${process.env.ZOOM_REDIRECT_URL}`}
+          >
+            Connect Zoom
+          </a>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
