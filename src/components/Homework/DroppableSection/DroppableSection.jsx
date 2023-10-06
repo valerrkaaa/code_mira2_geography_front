@@ -7,7 +7,7 @@ import s from './DroppableSection.module.css';
 import {HomeworkTeacherModeStore} from "../../../store/HomeworkTeacherModeStore";
 import {isTeacherMode} from "../../../utils/InferHomeworkStore";
 
-export const DroppableSection = ({store}) => {
+export const DroppableSection = ({store, checkFinishedStatus}) => {
     const [{isOver}, drop] = useDrop(
         () => ({
             accept: Object.values(DraggableItemTypes),
@@ -15,7 +15,6 @@ export const DroppableSection = ({store}) => {
                 const diff = monitor.getDifferenceFromInitialOffset();
 
                 const method = isTeacherMode(store) ? store.addPiece : store.setPieceCoords;
-
                 method({
                     id: item.id,
                     type: item.type,
@@ -24,6 +23,7 @@ export const DroppableSection = ({store}) => {
                         y: item.startPosition.y + diff.y,
                     }
                 });
+                checkFinishedStatus();
             },
             collect: (monitor) => ({
                 isOver: !!monitor.isOver(),

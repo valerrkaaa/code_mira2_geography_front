@@ -9,7 +9,7 @@ const BlockCourses = (props) => {
     <div
       className={classes.mainContent}
       onClick={(e) => {
-        navigate("/performcourses");
+        navigate(`/performcourses/${props.id}`);
       }}
     >
       <h1 className={classes.courseTittle}>{props.name}</h1>

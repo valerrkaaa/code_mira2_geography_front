@@ -29,6 +29,7 @@ const MainActivity = () => {
                     return (
                         <BlockCourses
                             key={item.id}
+                            id={item.id}
                             name={item.name}
                             photo={item.photo}
                         />

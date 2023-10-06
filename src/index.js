@@ -28,7 +28,7 @@ root.render(
       <Route path="/home" element={<MainActivity />} />
       <Route path="/courses" element={<MyCourses />} />
       <Route path="/createcourses" element={<CreateCourses />} />
-      <Route path="/performcourses" element={<PerformCourses />} />
+      <Route path="/performcourses/:id" element={<PerformCourses />} />
       <Route path="*" element={<Welcome />} />
     </Routes>
   </BrowserRouter>

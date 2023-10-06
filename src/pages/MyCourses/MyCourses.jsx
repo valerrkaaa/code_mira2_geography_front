@@ -6,37 +6,48 @@ import BlockCourses from "../../components/blockCourses/BlockCourses";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { getTeacherLessons } from "../../services/apiResponseParsers/homeworkParser";
 
 const MyCourses = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const [lessons, setLessons] = useState([]);
+    const [cookies] = useCookies();
 
-  const [cookie] = useCookies(["role"]);
-  const [isTeacher, setIsTeacher] = useState(true);
-  useEffect(() => {
-    console.log(cookie.role);
-    setIsTeacher(cookie.role === "teacher");
-  }, [cookie]);
-  return (
-    <div className={classes.backGround}>
-      <Header />
-      <div className={classes.SearchLine}>
-        <SearchBar placeholder="Поиск по названию курса" />
-        {isTeacher ? (
-          <Button
-            className={classes.btnAddCourses}
-            onClick={(e) => {
-              navigate("/createcourses");
-            }}
-          >
-            Добавить курс
-          </Button>
-        ) : (
-          <></>
-        )}
-      </div>
-      <BlockCourses />
-    </div>
-  );
+    const [isTeacher, setIsTeacher] = useState(true);
+    useEffect(() => {
+        setIsTeacher(cookies.role === "teacher");
+        getTeacherLessons(cookies.jwt)
+            .then((response) => {
+                if (response[0]) {
+                    setLessons(response[1]);
+                }
+            })
+            .catch();
+    }, [cookies]);
+
+    return (
+        <div className={classes.backGround}>
+            <Header />
+            <div className={classes.SearchLine}>
+                <SearchBar placeholder="Поиск по названию курса" />
+                {isTeacher ? (
+                    <Button
+                        className={classes.btnAddCourses}
+                        onClick={(e) => {
+                            navigate("/createcourses");
+                        }}
+                    >
+                        Добавить курс
+                    </Button>
+                ) : (
+                    <></>
+                )}
+            </div>
+            {lessons.map((item) => {
+                return <BlockCourses key={item.id} name={item.name} photo={item.photo}/>;
+            })}
+        </div>
+    );
 };
 
 export default MyCourses;
