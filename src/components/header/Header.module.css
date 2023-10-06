@@ -20,4 +20,14 @@ body {
   margin-left: auto;
   margin-right: 5px;
   font-size: medium;
-} /*стиль для шапки*/
+}
+.Link1 {
+  color: wheat;
+  margin-left: 80px;
+  margin-top: 5px;
+}
+.Link2 {
+  color: wheat;
+  margin-left: 40px;
+  margin-top: 5px;
+}

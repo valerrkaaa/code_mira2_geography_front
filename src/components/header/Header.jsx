@@ -46,6 +46,23 @@ const Header = () => {
           navigate("/home");
         }}
       />
+      <a
+        className={classes.Link1}
+        onClick={(e) => {
+          navigate("/home");
+        }}
+      >
+        Главная
+      </a>
+      <a
+        className={classes.Link2}
+        onClick={(e) => {
+          navigate("/Game");
+        }}
+      >
+        Игра
+      </a>
+
       {isAutorized ? (
         <div
           className={classes.menu}
