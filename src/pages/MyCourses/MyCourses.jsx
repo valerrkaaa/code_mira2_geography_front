@@ -34,7 +34,7 @@ const MyCourses = () => {
                     <Button
                         className={classes.btnAddCourses}
                         onClick={(e) => {
-                            navigate("/createcourses");
+                            navigate("/createcourses/create");
                         }}
                     >
                         Добавить курс
@@ -44,7 +44,15 @@ const MyCourses = () => {
                 )}
             </div>
             {lessons.map((item) => {
-                return <BlockCourses key={item.id} id={item.id} name={item.name} photo={item.photo}/>;
+                return (
+                    <BlockCourses
+                        needShowButtons={true}
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        photo={item.photo}
+                    />
+                );
             })}
         </div>
     );

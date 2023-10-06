@@ -28,7 +28,7 @@ root.render(
       <Route path="/edit_lection/:id" element={<EditableLecturePage />} />
       <Route path="/home" element={<MainActivity />} />
       <Route path="/courses" element={<MyCourses />} />
-      <Route path="/createcourses" element={<CreateCourses />} />
+      <Route path="/createcourses/:id" element={<CreateCourses />} />
       <Route path="/performcourses/:id" element={<PerformCourses />} />
       <Route path="/classes" element={<Liststudents />} />
       <Route path="*" element={<Welcome />} />

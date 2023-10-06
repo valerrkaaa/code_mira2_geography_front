@@ -7,11 +7,13 @@ import { DroppableSection } from "../../components/Homework/DroppableSection/Dro
 import { homeworkTeacherModeStore } from "../../store/HomeworkTeacherModeStore";
 import { useCookies } from "react-cookie";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getOwnLesson } from "../../services/apiResponseParsers/homeworkParser";
 
 const CreateCourses = observer(() => {
     const navigate = useNavigate();
-    const [cookie] = useCookies(["jwt"]);
+    const [cookies] = useCookies();
+    const params = useParams();
     const [isValid, setValid] = useState(false);
     const [model, setModel] = useState({
         name: "",
@@ -35,11 +37,25 @@ const CreateCourses = observer(() => {
     };
 
     useEffect(() => {
+        if (params.id !== "create") {
+            getOwnLesson(cookies.jwt, params.id).then((response) => {
+                homeworkTeacherModeStore.setMap(response[1].map);
+                homeworkTeacherModeStore.setPieces(response[1].pieces);
+                setModel({
+                    name: response[1].name,
+                    description: response[1].description,
+                    fileId: response[1].fileId,
+                });
+            });
+        }
+    }, [cookies.jwt, params.id]);
+
+    useEffect(() => {
         setValid(homeworkTeacherModeStore.hasItemsOnCard && model.name);
     }, [homeworkTeacherModeStore.homework, model]);
 
     const save = () => {
-        homeworkTeacherModeStore.sendToTheServer(cookie.jwt, model);
+        homeworkTeacherModeStore.sendToTheServer(cookies.jwt, model, params.id === "create");
         navigate("/courses");
     };
 
@@ -52,14 +68,16 @@ const CreateCourses = observer(() => {
                     placeholder="название курса"
                     type="text"
                     value={model.name}
-                    onChange={(e)=> changeField("name", e.target.value)}
+                    onChange={(e) => changeField("name", e.target.value)}
                 ></input>
                 <div className={classes.blockIput}>
                     <textarea
                         className={classes.textArea}
                         placeholder="Описание местности"
                         value={model.description}
-                        onChange={(e)=> changeField("description", e.target.value)}
+                        onChange={(e) =>
+                            changeField("description", e.target.value)
+                        }
                     ></textarea>
                     <input
                         className={classes.btnFile}

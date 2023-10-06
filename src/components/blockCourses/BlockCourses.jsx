@@ -7,36 +7,48 @@ import ClearIcon from "@mui/icons-material/Clear";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 const BlockCourses = (props) => {
-  const navigate = useNavigate();
-  const [cookie] = useCookies(["role"]);
-  const [isTeacher, setIsTeacher] = useState(true);
-  useEffect(() => {
-    console.log(cookie.role);
-    setIsTeacher(cookie.role === "teacher");
-  }, [cookie]);
-  return (
-    <div
-      className={classes.mainContent}
-      onClick={(e) => {
-        navigate(`/performcourses/${props.id}`);
-      }}
-    >
-      <h1 className={classes.courseTittle}>{props.name}</h1>
-      <img className={classes.imgCourses} src={props.photo} alt={"Not Found"} />
-      {isTeacher ? (
-        <div className={classes.control}>
-          <Button className={classes.btnSetting}>
-            <SettingsIcon />
-          </Button>
-          <Button className={classes.btnDelete}>
-            <ClearIcon />
-          </Button>
+    const navigate = useNavigate();
+    const [cookies] = useCookies();
+    const [isTeacher, setIsTeacher] = useState(true);
+    useEffect(() => {
+        setIsTeacher(cookies.role === "teacher");
+    }, [cookies]);
+    return (
+        <div
+            className={classes.mainContent}
+            onClick={(e) => {
+                navigate(`/performcourses/${props.id}`);
+            }}
+        >
+            <div className={classes.bodyContainer}>
+                <h1 className={classes.courseTittle}>{props.name}</h1>
+                <img
+                    className={classes.imgCourses}
+                    src={props.photo}
+                    alt={"Not Found"}
+                />
+            </div>
+            {isTeacher && props.needShowButtons ? (
+                <div className={classes.control}>
+                    <Button
+                        onClick={(e) => {
+                          console.log('1');
+                            e.stopPropagation();
+                            navigate(`/createcourses/${props.id}`);
+                        }}
+                        className={classes.btnSetting}
+                    >
+                        <SettingsIcon />
+                    </Button>
+                    <Button className={classes.btnDelete}>
+                        <ClearIcon />
+                    </Button>
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
+    );
 };
 
 export default BlockCourses;

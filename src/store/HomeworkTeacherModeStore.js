@@ -1,7 +1,10 @@
 import { DraggableItemTypes } from "../utils/DraggableItemTypes";
 import uuid from "react-uuid";
 import { makeAutoObservable } from "mobx";
-import { createLesson } from "../services/apiResponseParsers/homeworkParser";
+import {
+    createLesson,
+    updateLesson,
+} from "../services/apiResponseParsers/homeworkParser";
 
 export class HomeworkTeacherModeStore {
     constructor() {
@@ -30,6 +33,10 @@ export class HomeworkTeacherModeStore {
 
     setMap = (base64) => {
         this.homework.map = base64;
+    };
+
+    setPieces = (pieces) => {
+        this.homework.pieces = pieces;
     };
 
     addPiece = ({ position, type }) => {
@@ -69,10 +76,10 @@ export class HomeworkTeacherModeStore {
         return this.homework.pieces.length !== 0;
     };
 
-    sendToTheServer = (token, model) => {
+    sendToTheServer = (token, model, isNewLesson) => {
         let outputPieces = [];
         this.homework.pieces.forEach((piece) => {
-            if ((piece["position"]["x"] !== 0) && (piece["position"]["y"] !== 0)) {
+            if (piece["position"]["x"] !== 0 && piece["position"]["y"] !== 0) {
                 outputPieces.push(piece);
             }
         });
@@ -81,15 +88,23 @@ export class HomeworkTeacherModeStore {
             type: "map",
             name: model.name,
             description: model.description,
-            fileId: uuid(),
             content: JSON.stringify({
                 map: this.homework.map,
                 pieces: outputPieces,
             }),
         };
 
-        console.log(content);
-        createLesson(token, content).then((isSuccess, content) => {});
+        console.log('content', content);
+
+        if (isNewLesson)
+            createLesson(token, { ...content, fileId: uuid() }).then(
+                (isSuccess, content) => {}
+            );
+        else {
+            updateLesson(token, { ...content, fileId: model.fileId }).then(
+                (isSuccess, content) => {}
+            );
+        }
     };
 }
 

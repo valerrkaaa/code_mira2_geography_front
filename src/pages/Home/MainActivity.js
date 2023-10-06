@@ -32,6 +32,7 @@ const MainActivity = () => {
                             id={item.id}
                             name={item.name}
                             photo={item.photo}
+                            needShowButtons={false}
                         />
                     );
                 })}
