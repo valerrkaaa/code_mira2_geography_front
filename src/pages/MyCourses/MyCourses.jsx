@@ -13,7 +13,6 @@ const MyCourses = () => {
   const [cookie] = useCookies(["role"]);
   const [isTeacher, setIsTeacher] = useState(true);
   useEffect(() => {
-    console.log(cookie.role);
     setIsTeacher(cookie.role === "teacher");
   }, [cookie]);
   return (
