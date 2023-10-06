@@ -17,12 +17,12 @@ const Game = () => {
   const [isCanvas, setIsCanvas] = useState(false);
   const [isDownload, setIsDownload] = useState(false);
 
-  // const handleDownload = () => {
-  //   const link = document.createElement("a");
-  //   link.href = "https://www.example.com/path/to/archive.zip"; // Замените ссылку на ссылку на архив на своем сайте
-  //   link.download = "archive.zip"; // Замените имя файла на свое имя файла
-  //   link.click();
-  // };
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "../../../public/DownloadFile/GAME_PC.zip"; // Замените ссылку на ссылку на архив на своем сайте
+    link.download = "GAME_PC.zip"; // Замените имя файла на свое имя файла
+    link.click();
+  };
 
   return (
     <div className={classes.backGround}>
@@ -35,6 +35,11 @@ const Game = () => {
           <button
             className={classes.zoom}
             style={{ flex: 1, marginRight: "10px" }}
+            onClick={(e) => {
+              setIsCanvas(false);
+              setIsZoom(true);
+              setIsDownload(false);
+            }}
           >
             Zoom
           </button>
@@ -76,11 +81,14 @@ const Game = () => {
       )}
       {isDownload ? (
         <div className={classes.Download}>
-          <Button className={classes.btnDownLoad}>Скачать приложение</Button>
+          <Button className={classes.btnDownLoad} onClick={handleDownload}>
+            Скачать приложение
+          </Button>
         </div>
       ) : (
         <></>
       )}
+      {isZoom ? <div className={classes.Download}></div> : <></>}
     </div>
   );
 };
