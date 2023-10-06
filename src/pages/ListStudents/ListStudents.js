@@ -9,57 +9,53 @@ import { observer } from "mobx-react-lite";
 import StudentStore from "../../store/StudentStore";
 
 const ListStudents = observer((props) => {
-    const [cookies] = useCookies();
+  const [cookies] = useCookies();
 
-    useEffect(() => {
-        getClassList(cookies.jwt).then(([isSuccess, content]) => {
-            if (isSuccess) {
-                console.log(content);
-                StudentStore.setClassList(content);
-            } else {
-                console.log("error", content);
-            }
-        });
-    }, [cookies.jwt]);
+  useEffect(() => {
+    getClassList(cookies.jwt).then(([isSuccess, content]) => {
+      if (isSuccess) {
+        console.log(content);
+        StudentStore.setClassList(content);
+      } else {
+        console.log("error", content);
+      }
+    });
+  }, [cookies.jwt]);
 
-    return (
-        <div className={classes.backGround}>
-            <Header />
-            <div className={classes.content}>
-                {StudentStore.classList.map((item) => {
+  return (
+    <div className={classes.backGround}>
+      <Header />
+      <div className={classes.content}>
+        {StudentStore.classList.map((item) => {
+          return (
+            <div key={item.id} className={classes.classTittle}>
+              <div className={classes.classTittle}>
+                <div className={classes.headerClass}>
+                  <h2 className={classes.nameTittle}>{item.name}</h2>
+                  <Button className={classes.btnExpand}>
+                    <ArrowDownwardIcon />
+                  </Button>
+                </div>
+                <div className={classes.perimeterClass}>
+                  {StudentStore.getStudents(item.id).map((student) => {
                     return (
-                        <div key={item.id} className={classes.classTittle}>
-                            <div className={classes.classTittle}>
-                                <div className={classes.headerClass}>
-                                    <h2>{item.name}</h2>
-                                    <Button>
-                                        <ArrowDownwardIcon />
-                                    </Button>
-                                </div>
-                                {StudentStore.getStudents(item.id).map(
-                                    (student) => {
-                                        return (
-                                            <div key={student.id}>
-                                                <div className={classes.Letter}>
-                                                    <div
-                                                        className={
-                                                            classes.rowstudent
-                                                        }
-                                                    >
-                                                        {student.email}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                )}
-                            </div>
+                      <div key={student.id}>
+                        <div className={classes.Letter}>
+                          <div className={classes.rowstudent}>
+                            {student.email}
+                          </div>
                         </div>
+                      </div>
                     );
-                })}
+                  })}
+                </div>
+              </div>
             </div>
-        </div>
-    );
+          );
+        })}
+      </div>
+    </div>
+  );
 });
 
 export default ListStudents;
